@@ -1,4 +1,10 @@
 <?php 
+
+    require '../../includes/funciones.php';
+    $auth = estaAutenticado();
+    if(!$auth){
+        header('Location: /');
+    }
     
     // --- 1. VALIDAR EL ID ---
     $id = $_GET['id'];
@@ -142,7 +148,7 @@
     }
 
     //--- RENDERIZADO DEL HTML ---
-    require '../../includes/funciones.php';
+    
     incluirTemplate('header');
 ?>
     <main class="contenedor seccion">

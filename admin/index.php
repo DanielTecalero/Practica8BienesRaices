@@ -1,5 +1,10 @@
 <?php 
 
+    require '../includes/funciones.php';  
+    $auth = estaAutenticado();
+    if(!$auth){
+        header('Location: /');
+    }
 
     //Importar la conexion
     require '../includes/config/database.php';
@@ -13,7 +18,7 @@
     $resultado = $_GET['resultado'] ?? null;   
 
 
-    require '../includes/funciones.php';  
+    
     incluirTemplate('header');
 ?>
     <main class="contenedor seccion">
