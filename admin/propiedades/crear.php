@@ -21,7 +21,7 @@
     $habitaciones = '';
     $wc = '';
     $estacionamiento = '';
-    $vendedorId ='';
+    $vendedores_id ='';
 
     if($_SERVER['REQUEST_METHOD'] === 'POST') {
         //echo "<pre>";
@@ -34,7 +34,7 @@
         $habitaciones = mysqli_real_escape_string( $db, $_POST['habitaciones'] );
         $wc = mysqli_real_escape_string( $db, $_POST['wc'] );
         $estacionamiento = mysqli_real_escape_string( $db, $_POST['estacionamiento'] );
-        $vendedorId = mysqli_real_escape_string( $db, $_POST['vendedorId'] );
+        $vendedores_id = mysqli_real_escape_string( $db, $_POST['vendedores_id'] );
         $creado = date('Y/m/d');
 
         $imagen = $_FILES['imagen'];
@@ -63,7 +63,7 @@
         if(!$estacionamiento) {
             $errores[] = "El número de lugares de Estacionamiento es obligatorio";
         }
-        if(!$vendedorId) {
+        if(!$vendedores_id) {
             $errores[] = "Elige un vendedor";
         }
         
@@ -102,8 +102,8 @@
 
         echo "Todo bien";
         //Insertar en la base de datos
-        $query = "INSERT INTO propiedades (titulo, precio, imagen, descripcion, habitaciones, wc, estacionamiento, creado, vendedorId) 
-        VALUES ('$titulo', '$precio', '$nombreImagen', '$descripcion', '$habitaciones', '$wc', '$estacionamiento', '$creado', '$vendedorId')";
+        $query = "INSERT INTO propiedades (titulo, precio, imagen, descripcion, habitaciones, wc, estacionamiento, creado, vendedores_id) 
+        VALUES ('$titulo', '$precio', '$nombreImagen', '$descripcion', '$habitaciones', '$wc', '$estacionamiento', '$creado', '$vendedores_id')";
 
         $resultado = mysqli_query($db, $query);
        
@@ -161,10 +161,10 @@
             <fieldset>
                 <legend>Vendedor</legend>
 
-                <select name="vendedorId" id="vendedorId">
+                <select name="vendedores_id" id="vendedores_id">
                      <option value="">---SELECCIONE---</option>
                     <?php while($vendedor = mysqli_fetch_assoc($resultado)) : ?>
-                        <option <?php echo $vendedorId === $vendedor['id'] ? 'selected' : ''; ?> value="<?php echo $vendedor['id']; ?>"><?php echo $vendedor['nombre'] . " " . $vendedor['apellido']; ?></option>
+                        <option <?php echo $vendedores_id === $vendedor['id'] ? 'selected' : ''; ?> value="<?php echo $vendedor['id']; ?>"><?php echo $vendedor['nombre'] . " " . $vendedor['apellido']; ?></option>
                     <?php endwhile; ?>
                 </select>
             </fieldset>

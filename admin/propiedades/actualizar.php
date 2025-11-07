@@ -46,7 +46,7 @@
     $habitaciones = $propiedad['habitaciones'];
     $wc = $propiedad['wc'];
     $estacionamiento = $propiedad['estacionamiento'];
-    $vendedorId = $propiedad['vendedorId'];
+    $vendedores_id = $propiedad['vendedores_id'];
     $imagenPropiedad = $propiedad['imagen']; // Guardamos el nombre de la imagen actual
 
 
@@ -62,7 +62,7 @@
         $habitaciones = mysqli_real_escape_string( $db, $_POST['habitaciones'] );
         $wc = mysqli_real_escape_string( $db, $_POST['wc'] );
         $estacionamiento = mysqli_real_escape_string( $db, $_POST['estacionamiento'] );
-        $vendedorId = mysqli_real_escape_string( $db, $_POST['vendedorId'] );
+        $vendedores_id = mysqli_real_escape_string( $db, $_POST['vendedores_id'] );
 
         // --- MANEJO DE IMAGEN ---
         $imagen = $_FILES['imagen'];
@@ -86,7 +86,7 @@
         if(!$estacionamiento) {
             $errores[] = "El número de lugares de Estacionamiento es obligatorio";
         }
-        if(!$vendedorId) {
+        if(!$vendedores_id) {
             $errores[] = "Elige un vendedor";
         }
 
@@ -133,7 +133,7 @@
                         habitaciones = {$habitaciones}, 
                         wc = {$wc}, 
                         estacionamiento = {$estacionamiento}, 
-                        vendedorId = {$vendedorId} 
+                        vendedores_id = {$vendedores_id} 
                       WHERE id = {$id}";
 
 
@@ -198,13 +198,13 @@
             <fieldset>
                 <legend>Vendedor</legend>
 
-                <select name="vendedorId" id="vendedorId">
+                <select name="vendedores_id" id="vendedores_id">
                     <option value="" disabled selected>-- Seleccione un Vendedor --</option>
                     <?php while( $vendedor = mysqli_fetch_assoc($resultadoVendedores) ) : ?>
                         <option 
                             <?php 
                                 // Esta lógica pre-selecciona el vendedor actual
-                                echo $vendedorId === $vendedor['id'] ? 'selected' : ''; 
+                                echo $vendedores_id === $vendedor['id'] ? 'selected' : ''; 
                             ?> 
                             value="<?php echo $vendedor['id']; ?>"
                         >

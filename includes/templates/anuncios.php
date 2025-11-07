@@ -5,7 +5,7 @@
     $db = conectarDB();
 
     // --- 2. CONSTRUIR EL QUERY ---
-    $query = "SELECT * FROM propiedades LIMIT 3";
+    $query = "SELECT * FROM propiedades LIMIT 10";
 
     // --- 3. CONSULTAR LA BD ---
     $resultado = mysqli_query($db, $query);
